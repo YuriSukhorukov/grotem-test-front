@@ -64,7 +64,10 @@ export default {
 		  },
 		  addSelectedToCart(){
 		  	this.products.forEach(product => {
-		  		if(product.selected) this.addProduct(product)
+		  		if(product.selected){ 
+		  			product.selected = false
+		  			this.addProduct(product)
+		  		}
 		  	})
 		  }
 	  },
