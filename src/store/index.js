@@ -9,7 +9,7 @@ const store = new Vuex.Store({
 	modules: {
 		cart,
 		products
-	},
+	}
 });
 
 export default store;

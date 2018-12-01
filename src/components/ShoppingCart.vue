@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'ShoppingCart',
 	computed: {
@@ -33,7 +33,7 @@ export default {
 			'totalPrice'
 		]),
 		checkoutDisabled(){
-			return this.added.length == 0
+			return this.added.length === 0;
 		}
 	},
 	methods: {
