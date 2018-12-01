@@ -16,6 +16,9 @@ const cart = {
       let _product = state.items.find((p) => { return p.id === product.id })
       let _index = state.items.indexOf(product)
       state.items.splice(state.items.indexOf(_product), 1)
+    },
+    removeItems: state => {
+      state.items.splice(0, state.items.length)
     }
   },
 
@@ -25,6 +28,9 @@ const cart = {
     },
     removeProduct: ({ commit }, product) => {
       commit('outProduct', product)
+    },
+    checkout: ({ commit }) => {
+      commit('removeItems')
     }
   },
 
