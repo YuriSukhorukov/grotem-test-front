@@ -1,9 +1,5 @@
 <template>
 	<div>
-	    
-
-	    <div>{{totalPrice}}</div>
-
 
 	    <button @click='addSelectedToCart'>Add selected in Cart</button>
 
@@ -87,7 +83,6 @@ export default {
 	    ]),
 	    ...mapGetters('cart', [
 	      'added',
-	      'totalPrice'
 	    ]),
 
 	    products(){
