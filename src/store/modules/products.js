@@ -11,7 +11,6 @@ const products = {
 
   mutations: {
   	setProducts(state, products) {
-  		console.log(products)
   	  state.all = products
   	},
   	setGroups(state, groups) {
@@ -38,7 +37,6 @@ const products = {
   	  	if(val.group !== null){
   	  		val.skus.forEach(v => {
   	  			v.group = val.group.name
-  	  			console.log(v)
   	  			return v
   	  		})
   	  		return val.skus
@@ -53,7 +51,6 @@ const products = {
   	  	if(val.group != null){
   	  		val.skus.forEach(v => {
   	  			v.group = val.group.name
-  	  			console.log(v)
   	  			return v
   	  		})
   	  		return val.skus
