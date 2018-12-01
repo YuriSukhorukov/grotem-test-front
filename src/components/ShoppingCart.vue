@@ -8,6 +8,7 @@
 	        <th>Категория</th>
 	        <th>Товар</th>
 	        <th>Цена</th>
+	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -15,6 +16,7 @@
 	        <td>{{product.group}}</td>
 	        <td>{{product.name}}</td>
 	        <td>{{product.price}}</td>
+	        <button @click='removeProduct'>-</button>
 	      </tr>
 	    </tbody>
 	  </table>
@@ -36,6 +38,7 @@ export default {
 	},
 	methods: {
 		...mapActions('cart', [
+			'removeProduct',
 			'checkout'
 		])
 	}
