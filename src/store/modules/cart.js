@@ -18,7 +18,7 @@ const cart = {
       state.items.splice(state.items.indexOf(_product), 1);
     },
 
-    removeProducts (state) {
+    clear (state) {
       state.items.splice(0);
     }
   },
@@ -33,7 +33,7 @@ const cart = {
     },
 
     checkout ({ commit }) {
-      commit('removeProducts');
+      commit('clear');
     }
   },
 
