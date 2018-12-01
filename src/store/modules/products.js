@@ -51,12 +51,10 @@ const products = {
     all (state) {
       return state.all;
     },
-
-    byGroup (state, name ) {
+    byGroup: state => name => {
       return state.all.filter(product => product.group === name);
     },
-
-    groups ( state ) {
+    groups (state) {
       return state.groups;
     }
   }
