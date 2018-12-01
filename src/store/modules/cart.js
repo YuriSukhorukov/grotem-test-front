@@ -13,7 +13,9 @@ const cart = {
       state.items.push(product)
     },
     outProduct: (state, product) => {
-      state.items.slice(state.items.indexOf(product), 1)
+      let _product = state.items.find((p) => { return p.id === product.id })
+      let _index = state.items.indexOf(product)
+      state.items.splice(state.items.indexOf(_product), 1)
     }
   },
 
