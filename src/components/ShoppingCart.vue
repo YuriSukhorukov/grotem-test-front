@@ -1,5 +1,6 @@
 <template>
 	<div id="shopping-cart">
+		<div>{{totalPrice}}</div>
 		<table>
 	    <thead>
 	      <tr>
@@ -20,12 +21,13 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
 	name: 'ShoppingCart',
 	computed: {
 		...mapGetters('cart', [
-			'added'
+			'added',
+			'totalPrice'
 		])
 	}
 };
