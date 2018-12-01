@@ -34,13 +34,34 @@ const products = {
 
   getters: { 
   	all: state => {
-  	  return state.all.map(val => { val.skus.forEach(v => v.group = val.group.name); return val.skus}).flat()
+  	  return state.all.map(val => {
+  	  	if(val.group !== null){
+  	  		val.skus.forEach(v => {
+  	  			v.group = val.group.name
+  	  			console.log(v)
+  	  			return v
+  	  		})
+  	  		return val.skus
+  	  	}
+  	  }).flat().filter(val => val != null)
+  	},
+  	byGroup: state => name => {
+  	  return state.all.filter(products => {
+  	  	if(products.group != null) 
+  	  		return products.group.name === name
+  	  }).map(val => {
+  	  	if(val.group != null){
+  	  		val.skus.forEach(v => {
+  	  			v.group = val.group.name
+  	  			console.log(v)
+  	  			return v
+  	  		})
+  	  		return val.skus
+  	  	}
+  	  }).flat().filter(val => val != null)
   	},
   	groups: state => {
   	  return state.groups.filter(g => g.name !== null)
-  	},
-  	byGroup: state => name => {
-      return state.all.filter(products => products.group.name === name).map(val => { val.skus.forEach(v => v.group = val.group.name); return val.skus }).flat()
   	}
   }
 }
