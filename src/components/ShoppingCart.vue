@@ -1,6 +1,7 @@
 <template>
 	<div id="shopping-cart">
 		<div>{{totalPrice}}</div>
+		<button @click='checkout' :disabled='checkoutDisabled'>Checkout</button>
 		<table>
 	    <thead>
 	      <tr>
@@ -28,6 +29,14 @@ export default {
 		...mapGetters('cart', [
 			'added',
 			'totalPrice'
+		]),
+		checkoutDisabled(){
+			return this.added.length == 0
+		}
+	},
+	methods: {
+		...mapActions('cart', [
+			'checkout'
 		])
 	}
 };
