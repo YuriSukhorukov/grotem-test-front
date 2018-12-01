@@ -27,7 +27,7 @@ const cart = {
   },
 
   getters: { 
-    addedItems: state => {
+    added: state => {
       return state.items
     },
     totalPrice: (state, getters) => {
