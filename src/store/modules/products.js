@@ -1,4 +1,4 @@
-import shop from './../../api/shop.js'
+import shop from './../../api/shop.js';
 
 const products = {
 
@@ -20,7 +20,7 @@ const products = {
 
   actions: { 
   	loadWithParent({ commit }) {
-  	  shop.getProductsWithParent().then(result => {
+  	  shop.loadProductsWithGroup().then(result => {
           commit('setProducts', result.data.map(val => {
           if(val.group !== null){
             val.skus.forEach(v => {
@@ -34,7 +34,7 @@ const products = {
   	  })
     },
     loadParents({ commit }) {
-      shop.getProductsParents().then(result => {
+      shop.loadProductsGroups().then(result => {
         commit('setGroups', result.data.filter(g => g.name !== null && g.name.match(/^([^0-9]*)$/)))
       })
     }

@@ -1,4 +1,4 @@
-import shop from './../../api/shop'
+import shop from './../../api/shop';
 
 const cart = {
   namespaced: true,
@@ -11,7 +11,7 @@ const cart = {
     putProduct (state, product) {
       state.items.push(product);
     },
-    
+
     outProduct (state, product) {
       let _product = state.items.find(p => p.id === product.id);
       let _index = state.items.indexOf(product);
@@ -50,4 +50,4 @@ const cart = {
   }
 }
 
-export default cart
+export default cart;
