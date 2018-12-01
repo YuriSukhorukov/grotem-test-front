@@ -13,7 +13,7 @@
 	    </thead>
 	    <tbody>
 	      <tr v-for="product in added">
-	        <td>{{product.group}}</td>
+	        <td class="text-first-upper">{{product.group}}</td>
 	        <td>{{product.name}}</td>
 	        <td>{{product.price}}</td>
 	        <button @click='removeProduct'>-</button>
@@ -48,4 +48,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+	.text-first-upper {
+    text-transform: lowercase;
+  }
+  .text-first-upper:first-letter {
+    text-transform: uppercase;
+  }
+</style>

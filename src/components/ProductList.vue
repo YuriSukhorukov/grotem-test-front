@@ -2,10 +2,10 @@
 	<div>
     <button @click='addSelectedToCart'>Add selected in Cart</button>  
     <div class="dropdown">
-      <button class="dropbtn">{{selectedGroup}}</button>
-      <div class="dropdown-content">
-        <a href="#" @click="selectGroup('Категория')">...</a>
-        <a href="#" @click="selectGroup(group.name)" v-for="group in groups">{{group.name}}</a>
+      <button class="dropbtn text-first-upper">{{selectedGroup}}</button>
+      <div class="dropdown-content text-first-upper">
+        <a class="text-first-upper" href="#" @click="selectGroup('Категория')">...</a>
+        <a class="text-first-upper" href="#" @click="selectGroup(group.name)" v-for="group in groups">{{group.name}}</a>
       </div>
 		</div>
     <table>
@@ -20,7 +20,7 @@
 	    <tbody>
 	      <tr v-for="product in sortedProducts">
 	      	<input type="checkbox" value="product" v-model="product.selected">
-	        <td>{{product.group}}</td>
+	        <td class="text-first-upper">{{product.group}}</td>
 	        <td>{{product.name}}</td>
 	        <td>{{product.price}}</td>
 	      </tr>
@@ -153,4 +153,11 @@ export default {
 	.dropdown:hover .dropdown-content {display: block;}
 
 	.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+  .text-first-upper {
+    text-transform: lowercase;
+  }
+  .text-first-upper:first-letter {
+    text-transform: uppercase;
+  }
 </style>
