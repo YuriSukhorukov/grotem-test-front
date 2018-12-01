@@ -27,15 +27,18 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'ShoppingCart',
+	
 	computed: {
 		...mapGetters('cart', [
 			'added',
 			'totalPrice'
 		]),
+		
 		checkoutDisabled(){
 			return this.added.length === 0;
 		}
 	},
+
 	methods: {
 		...mapActions('cart', [
 			'removeProduct',

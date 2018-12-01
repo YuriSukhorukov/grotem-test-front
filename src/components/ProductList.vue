@@ -1,19 +1,14 @@
 <template>
 	<div>
-
-	    <button @click='addSelectedToCart'>Add selected in Cart</button>
-
-	    
-	    <div class="dropdown">
-		  <button class="dropbtn">Категории</button>
-		  <div class="dropdown-content">
-		  	<a href="#" @click="selectGroup('')">-</a>
-		  	<a href="#" @click="selectGroup(group.name)" v-for="group in groups">{{group.name}}</a>
-		  </div>
+    <button @click='addSelectedToCart'>Add selected in Cart</button>  
+    <div class="dropdown">
+      <button class="dropbtn">{{selectedGroup}}</button>
+      <div class="dropdown-content">
+        <a href="#" @click="selectGroup('Категория')">...</a>
+        <a href="#" @click="selectGroup(group.name)" v-for="group in groups">{{group.name}}</a>
+      </div>
 		</div>
-
-
-	    <table>
+    <table>
 	    <thead>
 	      <tr>
 	      	<th></th>
@@ -32,83 +27,86 @@
 	    </tbody>
 	  </table>
 	</div>
-
-
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex';
 export default {
 	name: 'ProductList',
-	created() {
-		this.loadWithGroup()
-	    this.loadGroups()
+	
+  created () {
+    this.loadWithGroup();
+    this.loadGroups();
 	},
+
+  data () {
+    return {
+      selectedGroup: 'Категория',
+      currentSort:'name',
+      currentSortDir:'asc',
+      selectGroupTitle: 'Категория'
+    }
+  },
+
+  computed: {
+    ...mapGetters ('products', [
+      'all',
+      'groups',
+      'byGroup'
+    ]),
+
+    ...mapGetters ('cart', [
+      'added',
+    ]),
+
+    products () {
+      if(this.selectedGroup == this.selectGroupTitle)
+        return this.all.filter(product => !this.added.includes(product));
+      else
+        return this.byGroup(this.selectedGroup).filter(product => !this.added.includes(product));
+    },
+
+    sortedProducts () {
+      return this.products.sort((a,b) => {
+        let modifier = 1;    
+        if(this.currentSortDir === 'desc') modifier = -1;
+        if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+        if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+        return 0;
+      });
+    }
+  },
+
 	methods: {
-	    ...mapActions('products', [
-	      'loadWithGroup',
-	      'loadGroups'
-	    ]),
-	    ...mapActions('cart', [
-	      'addProduct',
-	      'removeProduct'
-	    ]),
-	    sort(s) {
-		    if(s === this.currentSort) {
-		      this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
-		    }
-		    this.currentSort = s;
-		  },
-		  selectGroup(group){
-		  	this.selectedGroup = group;
-		  },
-		  addSelectedToCart(){
-		  	this.products.forEach(product => {
-		  		if(product.selected){ 
-		  			product.selected = false
-		  			this.addProduct(product)
-		  		}
-		  	})
-		  }
-	  },
-	  data() {
-	    return {
-	      selectedGroup: '',
-	      currentSort:'name',
-  		  currentSortDir:'asc',
-	    }
-	  },
-	computed :{
-		...mapGetters('products', [
-	      'all',
-	      'groups',
-	      'byGroup'
-	    ]),
-	    ...mapGetters('cart', [
-	      'added',
-	    ]),
+    ...mapActions('products', [
+      'loadWithGroup',
+      'loadGroups'
+    ]),
+    
+    ...mapActions('cart', [
+      'addProduct',
+      'removeProduct'
+    ]),
 
-	    products(){
-	    	if(this.selectedGroup == '')
-	      		return this.all.filter(val => !this.added.includes(val))
-	      	else
-	      		return this.byGroup(this.selectedGroup).filter(val => !this.added.includes(val))
-	    },
+    sort (s) {
+		  if(s === this.currentSort)
+		    this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+		  this.currentSort = s;
+		},
+		
+    selectGroup (group) {
+      this.selectedGroup = group;
+    },
 
-	    inCart(){
-	      return this.added
-	    },
-
-	    sortedProducts() {
-	    	return this.products.sort((a,b) => {
-		      let modifier = 1;
-		      if(this.currentSortDir === 'desc') modifier = -1;
-		      if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
-		      if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
-		      return 0;
-		    });
-  		}
-	}
+    addSelectedToCart () {
+		  this.products.forEach(product => {
+		  	if(product.selected){ 
+          product.selected = false;
+          this.addProduct(product);
+        }
+      })
+		}
+  }
 };
 </script>
 
