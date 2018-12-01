@@ -41,13 +41,13 @@ import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
 	name: 'ProductList',
 	created() {
-		this.loadWithParent()
-	    this.loadParents()
+		this.loadWithGroup()
+	    this.loadGroups()
 	},
 	methods: {
 	    ...mapActions('products', [
-	      'loadWithParent',
-	      'loadParents'
+	      'loadWithGroup',
+	      'loadGroups'
 	    ]),
 	    ...mapActions('cart', [
 	      'addProduct',

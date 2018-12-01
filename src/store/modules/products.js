@@ -1,56 +1,65 @@
-import shop from './../../api/shop.js';
+import shop from './../../api/shop';
 
 const products = {
-
   namespaced: true,
 
   state: { 
-  	all: [],
-  	groups: [],
+    all: [],
+    groups: [],
   },
 
   mutations: {
-  	setProducts(state, products) {
-  	  state.all = products
-  	},
-  	setGroups(state, groups) {
-  	  state.groups = groups
-  	}
+    setProducts(state, products) {
+      state.all = products;
+    },
+
+    setGroups(state, groups) {
+      state.groups = groups;
+    }
   },
 
   actions: { 
-  	loadWithParent({ commit }) {
-  	  shop.loadProductsWithGroup().then(result => {
+    loadWithGroup({ commit }) {
+      shop.loadProductsWithGroup().then(result => {
           commit('setProducts', result.data.map(val => {
-          if(val.group !== null){
-            val.skus.forEach(v => {
-              v.group = val.group.name
-              v.selected = false
-              return v
-            })
-            return val.skus
-          }
-        }).flat().filter(val => val != null))
-  	  })
+            if (val.group !== null) {
+              val.skus.forEach(sk => {
+                sk.group = val.group.name;
+                sk.selected = false;
+                return sk;
+              })
+              return val.skus;
+            }
+          })
+          .flat()
+          .filter(val => {
+            return val != null;
+          }));
+      });
     },
-    loadParents({ commit }) {
+
+    loadGroups ({ commit }) {
       shop.loadProductsGroups().then(result => {
-        commit('setGroups', result.data.filter(g => g.name !== null && g.name.match(/^([^0-9]*)$/)))
-      })
+        commit('setGroups', result.data.filter(g => {
+          return g.name !== null && g.name.match(/^([^0-9]*)$/);
+        }));
+      });
     }
   },
 
   getters: { 
-  	all: state => {
-      return state.all
-  	},
-  	byGroup: state => name => {
-      return state.all.filter(product => product.group === name)
-  	},
-  	groups: state => {
-      return state.groups
-  	}
+    all (state) {
+      return state.all;
+    },
+
+    byGroup (state, name ) {
+      return state.all.filter(product => product.group === name);
+    },
+
+    groups ( state ) {
+      return state.groups;
+    }
   }
 }
 
-export default products
+export default products;
