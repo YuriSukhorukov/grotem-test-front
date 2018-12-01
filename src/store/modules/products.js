@@ -3,7 +3,7 @@ import shop from './../../api/shop.js'
 const products = {
 
   namespaced: true,
-  
+
   state: { 
   	all: [],
   	groups: [],
@@ -33,7 +33,7 @@ const products = {
 
   getters: { 
   	all: state => {
-  	  return state.all
+  	  return state.all.reduce((acc, val) => acc.concat(val.skus), []);
   	},
   	groups: state => {
   	  return state.groups.filter(g => g.name !== null)
