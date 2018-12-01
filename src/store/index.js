@@ -1,27 +1,15 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import cart from './modules/cart'
-import products from './modules/products'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import cart from './modules/cart';
+import products from './modules/products';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
 	modules: {
 		cart,
 		products
 	},
-	state: {
+});
 
-	},
-	getters: {
-
-	},
-	mutations: {
-
-	},
-	actions: {
-
-	}
-})
-
-export default store
+export default store;
