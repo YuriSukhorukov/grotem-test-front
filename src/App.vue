@@ -1,18 +1,20 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <ShoppingCart/>
     <ProductList/>
   </div>
 </template>
 
 <script>
 import ProductList from './components/ProductList'
+import ShoppingCart from './components/ShoppingCart'
 import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
-    ProductList
+    ProductList,
+    ShoppingCart
   },
 }
 </script>
