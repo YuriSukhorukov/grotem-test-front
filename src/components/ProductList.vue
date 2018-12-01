@@ -21,7 +21,7 @@
 	    <thead>
 	      <tr>
 	      	<th></th>
-	        <th @click="sort('group')">Категория</th>
+	        <th>Категория</th>
 	        <th @click="sort('name')">Товар</th>
 	        <th @click="sort('price')">Цена</th>
 	      </tr>
