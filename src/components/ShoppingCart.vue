@@ -11,7 +11,7 @@
 	      <tr v-for="product in added">
 	        <td style="width: 80%">{{product.name}}</td>
 	        <td>{{product.price}}</td>
-	        <td class="btn-remove-product"><button @click='removeProduct'>-</button></td>
+	        <td class="btn-remove-product"><button @click='removeProduct'><span style="color: #E24646">&#x2716;</span></button></td>
 	      </tr>
 	    </tbody>
 	    <tfoot>
@@ -95,6 +95,24 @@ export default {
 
   .btn-checkout {
   	text-align: center;
+  }
+
+  .btn-checkout {
+      font-size: 13px;
+      color: #47A2D3; 
+      font-weight: bold;
+
+      border-radius: 5px;
+      background-color: white;
+      border: 1px solid #dfdfdf;
+  }
+
+  .btn-checkout:hover {
+    background-color: #f0f0f0;
+  }
+
+  .btn-checkout:active {
+    transform: scale(0.95, 0.95);
   }
 
 	.text-first-upper {

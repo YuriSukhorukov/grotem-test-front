@@ -26,8 +26,8 @@
    </tbody>
     <tfoot>
       <tr>
-        <td colspan="4" class="btn-add-to-cart">
-          <button @click='addSelectedToCart'>В корзину</button>
+        <td colspan="4" class="btn-add-to-cart-wrapper">
+          <button class="btn-add-to-cart" @click='addSelectedToCart'>В корзину</button>
         </td>
       </tr>
     </tfoot>
@@ -108,7 +108,7 @@ export default {
         this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
       this.currentSort = s;
 
-      this.currentSortDirSymbol = this.currentSortDir==='asc'?'▼':'▲';
+      this.currentSortDirSymbol = this.currentSortDir==='asc'?'▲':'▼';
     },
     
     selectGroup (group) {
@@ -208,9 +208,22 @@ export default {
     width: 10px;
   }
 
-  .btn-add-to-cart {
+  .btn-add-to-cart-wrapper {
     text-align: right;
   }
+
+  .btn-add-to-cart {
+    text-align: left;
+      /* border: 1px solid #eaedef; */
+      font-size: 13px;
+      color: #47A2D3; 
+      font-weight: bold;
+
+      border-radius: 5px;
+      background-color: white;
+      border: 1px solid #dfdfdf;
+  }
+
 
   .data-tablee-text {
     /* background-color: yellow; */
@@ -220,7 +233,7 @@ export default {
   .dropbtn {
     /* width: 100px; */
     /* height: 100%; */
-    text-align: left;
+    
 /*     margin: 20px;
     padding: 20px; */
     /* width: 200px; */
@@ -228,13 +241,21 @@ export default {
       /* background-color: #4CAF50; */
       /* color: white; */
       /* padding: 16px; */
-      border: 1px solid #eaedef;
-      font-size: 13px;
+
       /* border: none; */
 
+      /* text-align: left; */
+      /* border: 1px solid #eaedef; */
+/*       font-size: 13px;
+      color: #47A2D3; 
+      font-weight: bold; */
+      font-size: 13px;
       color: #47A2D3; 
       font-weight: bold;
-      /* box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2); */
+
+      border-radius: 5px;
+      background-color: white;
+      border: 1px solid #dfdfdf;
   }
 
   .dropdown {
@@ -242,10 +263,21 @@ export default {
       display: inline-block;
   }
 
+  .dropbtn:active {
+    transform: scale(0.95, 0.95);
+  }
+
+  .btn-add-to-cart:active {
+    transform: scale(0.95, 0.95);
+  }
+
+  .btn-add-to-cart:hover {
+    background-color: #f0f0f0;
+  }
+
   .dropdown-content {
       display: none;
       position: absolute;
-      /* background-color: #f1f1f1; */
       background-color: white;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -253,10 +285,12 @@ export default {
   }
 
   .dropdown-content a {
-      color: #5e6684;
+      /* color: #5e6684; */
       padding: 12px 16px;
       text-decoration: none;
       display: block;
+      color: #47A2D3;
+      font-weight: bold;
   }
 
   .dropdown-content a:hover {background-color: #f0f0f0;}
