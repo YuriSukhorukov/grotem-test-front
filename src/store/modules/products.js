@@ -20,10 +20,10 @@ const products = {
 
   actions: { 
     loadWithGroup({ commit }) {
-      shop.loadProductsWithGroup().then(result => {
-          commit('setProducts', result.data.map(val => {
+      shop.loadProductsWithGroup().then((result) => {
+          commit('setProducts', result.data.map((val) => {
             if (val.group !== null) {
-              val.skus.forEach(sk => {
+              val.skus.forEach((sk) => {
                 sk.group = val.group.name;
                 sk.selected = false;
                 return sk;
@@ -32,15 +32,15 @@ const products = {
             }
           })
           .flat()
-          .filter(val => {
+          .filter((val) => {
             return val != null;
           }));
       });
     },
 
     loadGroups ({ commit }) {
-      shop.loadProductsGroups().then(result => {
-        commit('setGroups', result.data.filter(g => {
+      shop.loadProductsGroups().then((result) => {
+        commit('setGroups', result.data.filter((g) => {
           return g.name !== null && g.name.match(/^([^0-9]*)$/);
         }));
       });
