@@ -86,18 +86,28 @@ export default {
     ]),
 
     products () {
+      let preparedList = [];
+
       if(this.selectedGroup == this.selectGroupTitle)
-        return this.all.filter(product => !this.added.includes(product));
+        preparedList = this.all.filter((product) => {
+          return !this.added.includes(product);
+        });
       else
-        return this.byGroup(this.selectedGroup).filter(product => !this.added.includes(product));
+        preparedList = this.byGroup(this.selectedGroup).filter((product) => {
+          return !this.added.includes(product);
+        });
+
+      return preparedList;
     },
 
     sortedProducts () {
       return this.products.sort((a,b) => {
         let modifier = 1;    
+
         if(this.currentSortDir === 'desc') modifier = -1;
         if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
         if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+
         return 0;
       });
     },
@@ -122,8 +132,8 @@ export default {
     sort (s) {
       if(s === this.currentSort)
         this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
-      this.currentSort = s;
 
+      this.currentSort = s;
       this.currentSortDirSymbol = this.currentSortDir==='asc'?'▲':'▼';
     },
     
@@ -146,8 +156,9 @@ export default {
 
     onSelectGroupClickOutside (e) {
       if(e.target.name != 'showGroupButton'){
-        if(this.selectGroupMenuEnabled)
+        if(this.selectGroupMenuEnabled){
           this.selectGroupMenuEnabled = false;
+        }
       }
     }
   }
