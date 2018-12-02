@@ -1,33 +1,53 @@
 <template>
-  <table class="data-tablee-text">
-   <thead>
-     <tr>
-      <th></th>
-       <th>
-         <div class="dropdown">
-            <button name="showGroupButton" class="dropbtn text-first-upper" @click='onSelectGroupClick'>{{selectedGroup}} &emsp; &#9776;</button>
+  <table class="tablee-text">
+    <thead>
+      <tr>
+        <th></th>
+        <th>
+          <div class="dropdown">
+            <button name="showGroupButton" class="dropbtn text-first-upper" @click='onSelectGroupClick'>
+              {{selectedGroup}} &emsp; &#9776;
+            </button>
             <div class="text-first-upper dropdown-content" :style='dropdownContent'>
-              <a class="text-first-upper" href="#" @click="selectGroup('Категория'); onSelectGroupClick()">...</a>
-              <a class="text-first-upper" href="#" @click="selectGroup(group.name); onSelectGroupClick()" v-for="group in groups">{{group.name}}</a>
+              <a class="text-first-upper" href="#" @click="selectGroup('Категория'); onSelectGroupClick()">
+                ...
+              </a>
+              <a class="text-first-upper" href="#" @click="selectGroup(group.name); onSelectGroupClick()" v-for="group in groups">
+                {{group.name}}
+              </a>
             </div>
           </div> 
         </th>
-       <th style="color: #47A2D3; font-weight: bold" @click="sort('name')"><span v-if="currentSort===`name`">{{currentSortDirSymbol}}</span>&emsp;Товар</th>
-       <th style="color: #47A2D3; font-weight: bold" @click="sort('price')"><span v-if="currentSort===`price`">{{currentSortDirSymbol}}</span>&emsp;Цена</th>
-     </tr>
-   </thead>
-   <tbody>
-     <tr v-for="product in sortedProducts" class="data-tablee-cell">
+      <th class="header-text" @click="sort('name')">
+        <span v-if="currentSort===`name`">
+          {{currentSortDirSymbol}}
+        </span>
+        &emsp;Товар
+      </th>
+      <th class="header-text" @click="sort('price')">
+        <span v-if="currentSort===`price`">
+          {{currentSortDirSymbol}}
+        </span>
+        &emsp;Цена
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="product in sortedProducts" class="data-tablee-cell">
       <td class='td-checkbox-product'><input type="checkbox" value="product" v-model="product.selected"></td>
-       <td class="text-first-upper">{{product.group}}</td>
-       <td>{{product.name}}</td>
-       <td>{{product.price}}</td>
-     </tr>
-   </tbody>
+        <td class="text-first-upper">{{product.group}}</td>
+        <td>
+          {{product.name}}
+        </td>
+      <td>{{product.price}}</td>
+    </tr>
+  </tbody>
     <tfoot>
       <tr>
         <td colspan="4" class="btn-add-to-cart-wrapper">
-          <button class="btn-add-to-cart" @click='addSelectedToCart'>В корзину</button>
+          <button class="btn-add-to-cart" @click='addSelectedToCart'>
+            В корзину
+          </button>
         </td>
       </tr>
     </tfoot>
@@ -87,8 +107,8 @@ export default {
     },
 
     dropdownContent () {
-      let obj = this.selectGroupMenuEnabled ? {display: 'block'} : {display: 'none'};
-      return obj;
+      let showMode = this.selectGroupMenuEnabled ? {display: 'block'} : {display: 'none'};
+      return showMode;
     },
   },
 
@@ -139,21 +159,25 @@ export default {
 </script>
 
 <style scoped>
-  .data-tablee-text {
+  .tablee-text {
     font-size: 13px;
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 400;
     color: #5e6684;
-
+    line-height: 1;
   }
 
-  .data-tablee-text { line-height: 1; }
+  .header-text {
+    color: #47A2D3; 
+    font-weight: bold;
+  }
 
   th {
     cursor:pointer;
   }
 
-  td, th {
+  td, 
+  th {
     text-align: left;
     height: 30px;
     vertical-align: center;
@@ -169,7 +193,8 @@ export default {
     border-right: 1px solid #f0f0f0;
   }
 
-  thead, tfoot {
+  thead, 
+  tfoot {
     background-color: #fafafa;
   }
 
