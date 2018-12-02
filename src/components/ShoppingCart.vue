@@ -2,26 +2,28 @@
 		<table>
 	    <thead>
 	    	<tr>
-	    		<th style="color: #47A2D3; font-weight: bold">К оплате:</th>
+	    		<th class="t-align-left">К оплате:</th>
 	    		<th></th>
-	    		<th style="color: #47A2D3; font-weight: bold; text-align: center">{{totalPrice}}</th>
+	    		<th class="t-align-right">{{totalPrice}}</th>
 	    	</tr>
 	    </thead>
 	    <tbody>
 	      <tr v-for="product in added">
-	        <td style="width: 80%">{{product.name}}</td>
-	        <td>{{product.price}}</td>
-	        <td class="btn-remove-product"><button @click='removeProduct'><span style="color: #E24646">&#x2716;</span></button></td>
+	        <td>{{product.name}}</td>
+	        <td class="t-align-center">{{product.price}}</td>
+	        <td class="btn-remove-product-wrapper">
+	        	<button @click='removeProduct'>
+	        		<span>&#x2716;</span>
+	        	</button>
+	        </td>
 	      </tr>
 	    </tbody>
 	    <tfoot>
       	<tr>
-      		<td style="width: 80%">
-        	</td>
-        	<td class="total-price">
-        	</td>
-        	<td>
-        		<button class="btn-checkout" @click='checkout' :disabled='checkoutDisabled'>Заказать</button>
+        	<td colspan="4" class="t-align-right">
+        		<button class="btn-checkout" @click='checkout' :disabled='checkoutDisabled'>
+        			Заказать
+        		</button>
         	</td>
       	</tr>
     	</tfoot>
@@ -62,13 +64,13 @@ export default {
     font-weight: 400;
     color: #5e6684;
     line-height: 1;
-    /* border: 1px solid #eaedef; */
-    /* border-radius: 5px; */
     border-spacing: 0;
     width: 30%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	}
-	td, th {
+
+	td, 
+	th {
     padding: 5px;
     text-align: left;
     height: 30px;
@@ -77,52 +79,44 @@ export default {
     border-bottom: 1px solid #f0f0f0;
   }
 
-  thead, tfoot {
-    background-color: #fafafa;
+  .t-align-left {text-align: left;}
+
+  .t-align-center {text-align: center;}
+
+  .t-align-right {text-align: right;}
+
+  thead, 
+  tfoot {
+  	color: #47A2D3;
+  	font-weight: bold;
+  	background-color: #fafafa;
   }
 
-  tbody tr:hover {
-  	background-color: #ffffdd;
-  }
+  tbody tr:hover {background-color: #ffffdd;}
 
-  tbody td {
-    border-right: 1px solid #f0f0f0;
-  }
+  tbody td {border-right: 1px solid #f0f0f0;}
 
-  .btn-remove-product {
-  	text-align: center;
-  }
+  .btn-remove-product-wrapper {text-align: center;}
+
+  .btn-remove-product-wrapper button {color: #E24646;}
 
   .btn-checkout {
   	text-align: center;
+    font-size: 13px;
+    color: #47A2D3; 
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #dfdfdf;
   }
 
-  .btn-checkout {
-      font-size: 13px;
-      color: #47A2D3; 
-      font-weight: bold;
+  .btn-checkout:hover {background-color: #f0f0f0;}
 
-      border-radius: 5px;
-      background-color: white;
-      border: 1px solid #dfdfdf;
-  }
+  .btn-checkout:active {transform: scale(0.95, 0.95);}
 
-  .btn-checkout:hover {
-    background-color: #f0f0f0;
-  }
+	.text-first-upper {text-transform: lowercase;}
+  
+  .text-first-upper:first-letter {text-transform: uppercase;}
 
-  .btn-checkout:active {
-    transform: scale(0.95, 0.95);
-  }
-
-	.text-first-upper {
-    text-transform: lowercase;
-  }
-  .text-first-upper:first-letter {
-    text-transform: uppercase;
-  }
-
-  .total-price {
-    text-align: left;
-  }
+  .total-price {text-align: left;}
 </style>
