@@ -6,10 +6,10 @@
 	      	<th></th>
 	        <th class="data-tablee-text">
            <div class="dropdown">
-              <button class="dropbtn text-first-upper">{{selectedGroup}}</button>
-              <div class="dropdown-content text-first-upper">
-                <a class="text-first-upper" href="#" @click="selectGroup('Категория')">...</a>
-                <a class="text-first-upper" href="#" @click="selectGroup(group.name)" v-for="group in groups">{{group.name}}</a>
+              <button name="showGroupButton" class="dropbtn text-first-upper" @click='onSelectGroupClick'>{{selectedGroup}}</button>
+              <div class="text-first-upper dropdown-content" :style='dropdownContent'>
+                <a class="text-first-upper" href="#" @click="selectGroup('Категория'); onSelectGroupClick()">...</a>
+                <a class="text-first-upper" href="#" @click="selectGroup(group.name); onSelectGroupClick()" v-for="group in groups">{{group.name}}</a>
               </div>
             </div> 
           </th>
@@ -45,6 +45,8 @@ export default {
   created () {
     this.loadWithGroup();
     this.loadGroups();
+    
+    document.addEventListener('click', this.onSelectGroupClickOutside)
 	},
 
   data () {
@@ -52,7 +54,8 @@ export default {
       selectedGroup: 'Категория',
       currentSort:'name',
       currentSortDir:'asc',
-      selectGroupTitle: 'Категория'
+      selectGroupTitle: 'Категория',
+      selectGroupMenuEnabled: false
     }
   },
 
@@ -82,6 +85,11 @@ export default {
         if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
         return 0;
       });
+    },
+
+    dropdownContent () {
+      let obj = this.selectGroupMenuEnabled ? {display: 'block'} : {display: 'none'};
+      return obj;
     }
   },
 
@@ -113,7 +121,18 @@ export default {
           this.addProduct(product);
         }
       })
-		}
+		},
+
+    onSelectGroupClick () {
+      this.selectGroupMenuEnabled = !this.selectGroupMenuEnabled;
+    },
+
+    onSelectGroupClickOutside (e) {
+      if(e.target.name != 'showGroupButton'){
+        if(this.selectGroupMenuEnabled)
+          this.selectGroupMenuEnabled = false;
+      }
+    }
   }
 };
 </script>
@@ -131,6 +150,7 @@ export default {
     font-family: 'Nunito Sans', sans-serif;
     font-weight: 400;
     color: #5e6684;
+
   }
 
   .data-tablee-text { line-height: 1; }
@@ -145,6 +165,7 @@ export default {
 
 	th {
 	  cursor:pointer;
+    /* text-align: left; */
 	}
 
   td, th {
@@ -156,16 +177,24 @@ export default {
     border-bottom: 1px solid #eaedef;
   }
 
+  tr:hover {
+    /* border: 1px solid #eaedef; */
+    background-color: #ffffdd;
+  }
+
   thead, tfoot {
     /* border: 1px solid #eaedef; */
+    background-color: #fafafa;
   }
 
   table {
+    /* overflow: hidden; */
     /* border-collapse: collapse; */
     border: 1px solid #eaedef;
     border-radius: 5px;
     border-spacing: 0;
     width: 50%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
 
   .td-checkbox-product {
@@ -201,24 +230,25 @@ export default {
 	.dropdown-content {
 	    display: none;
 	    position: absolute;
-	    background-color: #f1f1f1;
+	    /* background-color: #f1f1f1; */
+      background-color: white;
 	    min-width: 160px;
 	    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 	    z-index: 1;
 	}
 
 	.dropdown-content a {
-	    color: black;
+      color: #5e6684;
 	    padding: 12px 16px;
 	    text-decoration: none;
 	    display: block;
 	}
 
-	.dropdown-content a:hover {background-color: #ddd;}
+	.dropdown-content a:hover {background-color: #f0f0f0;}
 
 	.dropdown:hover .dropdown-content {display: block;}
 
-	.dropdown:hover .dropbtn {background-color: #3e8e41;}
+	.dropdown:hover .dropbtn {background-color: #f0f0f0;}
 
   /* .dropdown:active .dropdown-content {display: none;} */
 
