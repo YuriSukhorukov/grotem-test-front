@@ -139,13 +139,6 @@ export default {
 </script>
 
 <style scoped>
-/*   #product-list {
-    border: 1px solid #eaedef;
-    border-radius: 5px;
-    border-spacing: 0;
-    width: 50%;
-  } */
-
   .data-tablee-text {
     font-size: 13px;
     font-family: 'Nunito Sans', sans-serif;
@@ -156,21 +149,11 @@ export default {
 
   .data-tablee-text { line-height: 1; }
 
-  .group-selecter {
-    /* width: 100%; */
-    /* background-color: yellow; */
-  }
-/*   td {
-    border: 1px solid #eaedef;
-  } */
-
   th {
     cursor:pointer;
-    /* text-align: left; */
   }
 
   td, th {
-    /* padding: 5px; */
     text-align: left;
     height: 30px;
     vertical-align: center;
@@ -192,10 +175,6 @@ export default {
 
   table {
     vertical-align: center;
-    /* overflow: hidden; */
-    /* border-collapse: collapse; */
-    /* border: 1px solid #eaedef; */
-    /* border-radius: 5px; */
     border-spacing: 0;
     width: 50%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -214,7 +193,6 @@ export default {
 
   .btn-add-to-cart {
     text-align: left;
-      /* border: 1px solid #eaedef; */
       font-size: 13px;
       color: #47A2D3; 
       font-weight: bold;
@@ -225,30 +203,7 @@ export default {
   }
 
 
-  .data-tablee-text {
-    /* background-color: yellow; */
-    /* border-bottom: 1px solid #eaedef; */
-  }
-
   .dropbtn {
-    /* width: 100px; */
-    /* height: 100%; */
-    
-/*     margin: 20px;
-    padding: 20px; */
-    /* width: 200px; */
-    /* height: 200px; */
-      /* background-color: #4CAF50; */
-      /* color: white; */
-      /* padding: 16px; */
-
-      /* border: none; */
-
-      /* text-align: left; */
-      /* border: 1px solid #eaedef; */
-/*       font-size: 13px;
-      color: #47A2D3; 
-      font-weight: bold; */
       font-size: 13px;
       color: #47A2D3; 
       font-weight: bold;
@@ -285,7 +240,6 @@ export default {
   }
 
   .dropdown-content a {
-      /* color: #5e6684; */
       padding: 12px 16px;
       text-decoration: none;
       display: block;
@@ -299,12 +253,7 @@ export default {
 
   .dropdown:hover .dropbtn {background-color: #f0f0f0;}
 
-  /* .dropdown:active .dropdown-content {display: none;} */
-
-  .text-first-upper {
-    text-transform: lowercase;
-  }
-  .text-first-upper:first-letter {
-    text-transform: uppercase;
-  }
+  .text-first-upper {text-transform: lowercase;}
+  
+  .text-first-upper:first-letter {text-transform: uppercase;}
 </style>
