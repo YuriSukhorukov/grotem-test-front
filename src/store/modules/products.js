@@ -30,11 +30,9 @@ const products = {
               })
               return val.skus;
             }
-          })
-          .flat()
-          .filter((val) => {
+          }).filter((val) => {
             return val != null;
-          }));
+          }).reduce((acc, val) => acc.concat(val), []));
       });
     },
 
