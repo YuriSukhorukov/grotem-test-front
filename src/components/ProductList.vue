@@ -12,22 +12,18 @@
               <a class="text-first-upper" href="#" @click="selectGroup('Категория'); onSelectGroupClick()">
                 ...
               </a>
-              <a class="text-first-upper" href="#" @click="selectGroup(group.name); onSelectGroupClick()" v-for="group in groups">
+              <a v-for="group in groups" class="text-first-upper" href="#" @click="selectGroup(group.name); onSelectGroupClick()">
                 {{group.name}}
               </a>
             </div>
           </div> 
         </th>
       <th @click="sort('name')">
-        <span v-if="currentSort===`name`">
-          {{currentSortDirSymbol}}
-        </span>
+        <span v-if="currentSort===`name`">{{currentSortDirSymbol}}</span>
         &emsp;Товар
       </th>
       <th @click="sort('price')">
-        <span v-if="currentSort===`price`">
-          {{currentSortDirSymbol}}
-        </span>
+        <span v-if="currentSort===`price`">{{currentSortDirSymbol}}</span>
         &emsp;Цена
       </th>
     </tr>
@@ -37,15 +33,9 @@
       <td class='td-checkbox-product'>
         <input type="checkbox" value="product" v-model="product.selected">
       </td>
-      <td class="text-first-upper">
-        {{product.group}}
-      </td>
-      <td>
-        {{product.name}}
-      </td>
-      <td>
-        {{product.price}}
-      </td>
+      <td class="text-first-upper">{{product.group}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
     </tr>
   </tbody>
     <tfoot>
