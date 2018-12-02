@@ -1,5 +1,8 @@
 # grotem-test-front
 
+* [Vue.js](https://vuex.vuejs.org)
+* [Vuex](https://vuex.vuejs.org)
+
 ## Project setup
 ```
 npm install
