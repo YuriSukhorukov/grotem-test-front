@@ -2,23 +2,23 @@
   <table>
    <thead class="data-tablee-text">
      <tr>
-     	<th></th>
+      <th></th>
        <th class="data-tablee-text">
          <div class="dropdown">
-            <button name="showGroupButton" class="dropbtn text-first-upper" @click='onSelectGroupClick'>{{selectedGroup}}</button>
+            <button name="showGroupButton" class="dropbtn text-first-upper" @click='onSelectGroupClick'>{{selectedGroup}} &emsp; &#9776;</button>
             <div class="text-first-upper dropdown-content" :style='dropdownContent'>
               <a class="text-first-upper" href="#" @click="selectGroup('Категория'); onSelectGroupClick()">...</a>
               <a class="text-first-upper" href="#" @click="selectGroup(group.name); onSelectGroupClick()" v-for="group in groups">{{group.name}}</a>
             </div>
           </div> 
         </th>
-       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('name')">Товар</th>
-       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('price')">Цена</th>
+       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('name')">Товар <span>&#9660;</span></th>
+       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('price')">Цена <span>&#9660;</span></th>
      </tr>
    </thead>
    <tbody>
      <tr v-for="product in sortedProducts" class="data-tablee-cell">
-     	<td class='td-checkbox-product'><input type="checkbox" value="product" v-model="product.selected"></td>
+      <td class='td-checkbox-product'><input type="checkbox" value="product" v-model="product.selected"></td>
        <td class="text-first-upper data-tablee-text">{{product.group}}</td>
        <td class="data-tablee-text">{{product.name}}</td>
        <td class="data-tablee-text">{{product.price}}</td>
@@ -38,14 +38,14 @@
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
-	name: 'ProductList',
-	
+  name: 'ProductList',
+  
   created () {
     this.loadWithGroup();
     this.loadGroups();
     
     document.addEventListener('click', this.onSelectGroupClickOutside)
-	},
+  },
 
   data () {
     return {
@@ -91,7 +91,7 @@ export default {
     }
   },
 
-	methods: {
+  methods: {
     ...mapActions('products', [
       'loadWithGroup',
       'loadGroups'
@@ -103,23 +103,23 @@ export default {
     ]),
 
     sort (s) {
-		  if(s === this.currentSort)
-		    this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
-		  this.currentSort = s;
-		},
-		
+      if(s === this.currentSort)
+        this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
+      this.currentSort = s;
+    },
+    
     selectGroup (group) {
       this.selectedGroup = group;
     },
 
     addSelectedToCart () {
-		  this.products.forEach(product => {
-		  	if(product.selected){ 
+      this.products.forEach(product => {
+        if(product.selected){ 
           product.selected = false;
           this.addProduct(product);
         }
       })
-		},
+    },
 
     onSelectGroupClick () {
       this.selectGroupMenuEnabled = !this.selectGroupMenuEnabled;
@@ -161,13 +161,13 @@ export default {
     border: 1px solid #eaedef;
   } */
 
-	th {
-	  cursor:pointer;
+  th {
+    cursor:pointer;
     /* text-align: left; */
-	}
+  }
 
   td, th {
-    padding: 5px;
+    /* padding: 5px; */
     text-align: left;
     height: 30px;
     vertical-align: center;
@@ -214,41 +214,53 @@ export default {
     /* border-bottom: 1px solid #eaedef; */
   }
 
-	.dropbtn {
-/* 	    background-color: #4CAF50;
-	    color: white;
-	    padding: 16px;
-	    font-size: 16px;
-	    border: none; */
-	}
+  .dropbtn {
+    /* width: 100px; */
+    /* height: 100%; */
+    text-align: left;
+/*     margin: 20px;
+    padding: 20px; */
+    /* width: 200px; */
+    /* height: 200px; */
+      /* background-color: #4CAF50; */
+      /* color: white; */
+      /* padding: 16px; */
+      border: 1px solid #eaedef;
+      font-size: 13px;
+      /* border: none; */
 
-	.dropdown {
-	    position: relative;
-	    display: inline-block;
-	}
+      color: #47A2D3; 
+      font-weight: bold;
+      /* box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.2); */
+  }
 
-	.dropdown-content {
-	    display: none;
-	    position: absolute;
-	    /* background-color: #f1f1f1; */
+  .dropdown {
+      position: relative;
+      display: inline-block;
+  }
+
+  .dropdown-content {
+      display: none;
+      position: absolute;
+      /* background-color: #f1f1f1; */
       background-color: white;
-	    min-width: 160px;
-	    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	    z-index: 1;
-	}
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+  }
 
-	.dropdown-content a {
+  .dropdown-content a {
       color: #5e6684;
-	    padding: 12px 16px;
-	    text-decoration: none;
-	    display: block;
-	}
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+  }
 
-	.dropdown-content a:hover {background-color: #f0f0f0;}
+  .dropdown-content a:hover {background-color: #f0f0f0;}
 
-	.dropdown:hover .dropdown-content {display: block;}
+  .dropdown:hover .dropdown-content {display: block;}
 
-	.dropdown:hover .dropbtn {background-color: #f0f0f0;}
+  .dropdown:hover .dropbtn {background-color: #f0f0f0;}
 
   /* .dropdown:active .dropdown-content {display: none;} */
 
