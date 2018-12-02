@@ -1,9 +1,9 @@
 <template>
-  <table>
-   <thead class="data-tablee-text">
+  <table class="data-tablee-text">
+   <thead>
      <tr>
       <th></th>
-       <th class="data-tablee-text">
+       <th>
          <div class="dropdown">
             <button name="showGroupButton" class="dropbtn text-first-upper" @click='onSelectGroupClick'>{{selectedGroup}} &emsp; &#9776;</button>
             <div class="text-first-upper dropdown-content" :style='dropdownContent'>
@@ -12,16 +12,16 @@
             </div>
           </div> 
         </th>
-       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('name')"><span v-if="currentSort===`name`">{{currentSortDirSymbol}}</span>&emsp;Товар</th>
-       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('price')"><span v-if="currentSort===`price`">{{currentSortDirSymbol}}</span>&emsp;Цена</th>
+       <th style="color: #47A2D3; font-weight: bold" @click="sort('name')"><span v-if="currentSort===`name`">{{currentSortDirSymbol}}</span>&emsp;Товар</th>
+       <th style="color: #47A2D3; font-weight: bold" @click="sort('price')"><span v-if="currentSort===`price`">{{currentSortDirSymbol}}</span>&emsp;Цена</th>
      </tr>
    </thead>
    <tbody>
      <tr v-for="product in sortedProducts" class="data-tablee-cell">
       <td class='td-checkbox-product'><input type="checkbox" value="product" v-model="product.selected"></td>
-       <td class="text-first-upper data-tablee-text">{{product.group}}</td>
-       <td class="data-tablee-text">{{product.name}}</td>
-       <td class="data-tablee-text">{{product.price}}</td>
+       <td class="text-first-upper">{{product.group}}</td>
+       <td>{{product.name}}</td>
+       <td>{{product.price}}</td>
      </tr>
    </tbody>
     <tfoot>
@@ -254,6 +254,6 @@ export default {
   .dropdown:hover .dropbtn {background-color: #f0f0f0;}
 
   .text-first-upper {text-transform: lowercase;}
-  
+
   .text-first-upper:first-letter {text-transform: uppercase;}
 </style>
