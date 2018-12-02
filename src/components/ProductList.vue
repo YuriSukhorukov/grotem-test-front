@@ -2,7 +2,7 @@
 	<div id='product-list'>
     <table>
 	    <thead class="data-tablee-text">
-	      <tr class="tr-header">
+	      <tr>
 	      	<th></th>
 	        <th class="data-tablee-text">
            <div class="dropdown">
@@ -174,16 +174,19 @@ export default {
     height: 30px;
     vertical-align: center;
     padding: 10px;
-    border-bottom: 1px solid #eaedef;
+    /* border-bottom: 1px solid #eaedef; */
+    border-bottom: 1px solid #f0f0f0;
   }
 
-  tr:hover {
-    /* border: 1px solid #eaedef; */
+  tbody tr:hover {
     background-color: #ffffdd;
   }
 
+  td {
+    border-right: 1px solid #f0f0f0;
+  }
+
   thead, tfoot {
-    /* border: 1px solid #eaedef; */
     background-color: #fafafa;
   }
 
