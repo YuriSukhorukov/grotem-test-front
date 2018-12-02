@@ -2,9 +2,9 @@
 		<table>
 	    <thead>
 	    	<tr>
-	    		<th>К оплате:</th>
+	    		<th style="color: #47A2D3; font-weight: bold">К оплате:</th>
 	    		<th></th>
-	    		<th style="text-align: center">{{totalPrice}}</th>
+	    		<th style="color: #47A2D3; font-weight: bold; text-align: center">{{totalPrice}}</th>
 	    	</tr>
 	    </thead>
 	    <tbody>
@@ -62,8 +62,8 @@ export default {
     font-weight: 400;
     color: #5e6684;
     line-height: 1;
-    border: 1px solid #eaedef;
-    border-radius: 5px;
+    /* border: 1px solid #eaedef; */
+    /* border-radius: 5px; */
     border-spacing: 0;
     width: 30%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

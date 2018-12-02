@@ -12,8 +12,8 @@
             </div>
           </div> 
         </th>
-       <th class="data-tablee-text" @click="sort('name')">Товар</th>
-       <th class="data-tablee-text" @click="sort('price')">Цена</th>
+       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('name')">Товар</th>
+       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('price')">Цена</th>
      </tr>
    </thead>
    <tbody>
@@ -191,8 +191,8 @@ export default {
     vertical-align: center;
     /* overflow: hidden; */
     /* border-collapse: collapse; */
-    border: 1px solid #eaedef;
-    border-radius: 5px;
+    /* border: 1px solid #eaedef; */
+    /* border-radius: 5px; */
     border-spacing: 0;
     width: 50%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
