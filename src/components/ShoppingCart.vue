@@ -21,7 +21,7 @@
 	    <tfoot>
       	<tr>
         	<td colspan="4" class="t-align-right">
-        		<button class="btn-checkout" @click='checkout' :disabled='checkoutDisabled'>
+        		<button class="btn-checkout" @click='checkout' :disabled='isCheckoutDisabled'>
         			Заказать
         		</button>
         	</td>
@@ -32,6 +32,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+
 export default {
 	name: 'ShoppingCart',
 	
@@ -41,7 +42,7 @@ export default {
 			'totalPrice'
 		]),
 		
-		checkoutDisabled(){
+		isCheckoutDisabled(){
 			return this.added.length === 0;
 		}
 	},
