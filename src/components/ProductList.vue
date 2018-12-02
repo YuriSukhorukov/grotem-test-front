@@ -12,8 +12,8 @@
             </div>
           </div> 
         </th>
-       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('name')">Товар <span>&#9660;</span></th>
-       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('price')">Цена <span>&#9660;</span></th>
+       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('name')"><span v-if="currentSort===`name`">{{currentSortDirSymbol}}</span>&emsp;Товар</th>
+       <th class="data-tablee-text" style="color: #47A2D3; font-weight: bold" @click="sort('price')"><span v-if="currentSort===`price`">{{currentSortDirSymbol}}</span>&emsp;Цена</th>
      </tr>
    </thead>
    <tbody>
@@ -53,7 +53,8 @@ export default {
       currentSort:'name',
       currentSortDir:'asc',
       selectGroupTitle: 'Категория',
-      selectGroupMenuEnabled: false
+      selectGroupMenuEnabled: false,
+      currentSortDirSymbol: ''
     }
   },
 
@@ -88,7 +89,7 @@ export default {
     dropdownContent () {
       let obj = this.selectGroupMenuEnabled ? {display: 'block'} : {display: 'none'};
       return obj;
-    }
+    },
   },
 
   methods: {
@@ -106,6 +107,8 @@ export default {
       if(s === this.currentSort)
         this.currentSortDir = this.currentSortDir==='asc'?'desc':'asc';
       this.currentSort = s;
+
+      this.currentSortDirSymbol = this.currentSortDir==='asc'?'▼':'▲';
     },
     
     selectGroup (group) {
