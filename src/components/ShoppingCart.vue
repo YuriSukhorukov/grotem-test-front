@@ -1,26 +1,31 @@
 <template>
-	<div id="shopping-cart">
-		<div>{{totalPrice}}</div>
-		<button @click='checkout' :disabled='checkoutDisabled'>Checkout</button>
 		<table>
 	    <thead>
-	      <tr>
-	        <th>Категория</th>
-	        <th>Товар</th>
-	        <th>Цена</th>
-	        <th></th>
-	      </tr>
+	    	<tr>
+	    		<th>К оплате:</th>
+	    		<th></th>
+	    		<th style="text-align: center">{{totalPrice}}</th>
+	    	</tr>
 	    </thead>
 	    <tbody>
 	      <tr v-for="product in added">
-	        <td class="text-first-upper">{{product.group}}</td>
-	        <td>{{product.name}}</td>
+	        <td style="width: 80%">{{product.name}}</td>
 	        <td>{{product.price}}</td>
-	        <button @click='removeProduct'>-</button>
+	        <td class="btn-remove-product"><button @click='removeProduct'>-</button></td>
 	      </tr>
 	    </tbody>
+	    <tfoot>
+      	<tr>
+      		<td style="width: 80%">
+        	</td>
+        	<td class="total-price">
+        	</td>
+        	<td>
+        		<button class="btn-checkout" @click='checkout' :disabled='checkoutDisabled'>Заказать</button>
+        	</td>
+      	</tr>
+    	</tfoot>
 	  </table>
-	</div>
 </template>
 
 <script>
@@ -48,11 +53,58 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+	table {
+		vertical-align: center;
+		width: 25%;
+		font-size: 13px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 400;
+    color: #5e6684;
+    line-height: 1;
+    border: 1px solid #eaedef;
+    border-radius: 5px;
+    border-spacing: 0;
+    width: 30%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	}
+	td, th {
+    padding: 5px;
+    text-align: left;
+    height: 30px;
+    vertical-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  thead, tfoot {
+    background-color: #fafafa;
+  }
+
+  tbody tr:hover {
+  	background-color: #ffffdd;
+  }
+
+  tbody td {
+    border-right: 1px solid #f0f0f0;
+  }
+
+  .btn-remove-product {
+  	text-align: center;
+  }
+
+  .btn-checkout {
+  	text-align: center;
+  }
+
 	.text-first-upper {
     text-transform: lowercase;
   }
   .text-first-upper:first-letter {
     text-transform: uppercase;
+  }
+
+  .total-price {
+    text-align: left;
   }
 </style>

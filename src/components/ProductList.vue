@@ -1,39 +1,37 @@
 <template>
-	<div id='product-list'>
-    <table>
-	    <thead class="data-tablee-text">
-	      <tr>
-	      	<th></th>
-	        <th class="data-tablee-text">
-           <div class="dropdown">
-              <button name="showGroupButton" class="dropbtn text-first-upper" @click='onSelectGroupClick'>{{selectedGroup}}</button>
-              <div class="text-first-upper dropdown-content" :style='dropdownContent'>
-                <a class="text-first-upper" href="#" @click="selectGroup('Категория'); onSelectGroupClick()">...</a>
-                <a class="text-first-upper" href="#" @click="selectGroup(group.name); onSelectGroupClick()" v-for="group in groups">{{group.name}}</a>
-              </div>
-            </div> 
-          </th>
-	        <th class="data-tablee-text" @click="sort('name')">Товар</th>
-	        <th class="data-tablee-text" @click="sort('price')">Цена</th>
-	      </tr>
-	    </thead>
-	    <tbody>
-	      <tr v-for="product in sortedProducts" class="data-tablee-cell">
-	      	<td class='td-checkbox-product'><input type="checkbox" value="product" v-model="product.selected"></td>
-	        <td class="text-first-upper data-tablee-text">{{product.group}}</td>
-	        <td class="data-tablee-text">{{product.name}}</td>
-	        <td class="data-tablee-text">{{product.price}}</td>
-	      </tr>
-	    </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="4" class="btn-add-to-cart">
-            <button @click='addSelectedToCart'>Add selected in Cart</button>
-          </td>
-        </tr>
-      </tfoot>
-	  </table>
-	</div>
+  <table>
+   <thead class="data-tablee-text">
+     <tr>
+     	<th></th>
+       <th class="data-tablee-text">
+         <div class="dropdown">
+            <button name="showGroupButton" class="dropbtn text-first-upper" @click='onSelectGroupClick'>{{selectedGroup}}</button>
+            <div class="text-first-upper dropdown-content" :style='dropdownContent'>
+              <a class="text-first-upper" href="#" @click="selectGroup('Категория'); onSelectGroupClick()">...</a>
+              <a class="text-first-upper" href="#" @click="selectGroup(group.name); onSelectGroupClick()" v-for="group in groups">{{group.name}}</a>
+            </div>
+          </div> 
+        </th>
+       <th class="data-tablee-text" @click="sort('name')">Товар</th>
+       <th class="data-tablee-text" @click="sort('price')">Цена</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr v-for="product in sortedProducts" class="data-tablee-cell">
+     	<td class='td-checkbox-product'><input type="checkbox" value="product" v-model="product.selected"></td>
+       <td class="text-first-upper data-tablee-text">{{product.group}}</td>
+       <td class="data-tablee-text">{{product.name}}</td>
+       <td class="data-tablee-text">{{product.price}}</td>
+     </tr>
+   </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" class="btn-add-to-cart">
+          <button @click='addSelectedToCart'>В корзину</button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 </template>
 
 <script>
@@ -156,7 +154,7 @@ export default {
   .data-tablee-text { line-height: 1; }
 
   .group-selecter {
-    width: 100%;
+    /* width: 100%; */
     /* background-color: yellow; */
   }
 /*   td {
@@ -174,7 +172,6 @@ export default {
     height: 30px;
     vertical-align: center;
     padding: 10px;
-    /* border-bottom: 1px solid #eaedef; */
     border-bottom: 1px solid #f0f0f0;
   }
 
@@ -191,6 +188,7 @@ export default {
   }
 
   table {
+    vertical-align: center;
     /* overflow: hidden; */
     /* border-collapse: collapse; */
     border: 1px solid #eaedef;
@@ -209,7 +207,6 @@ export default {
 
   .btn-add-to-cart {
     text-align: right;
-    /* background-color: red; */
   }
 
   .data-tablee-text {

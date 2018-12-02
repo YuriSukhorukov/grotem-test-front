@@ -1,13 +1,14 @@
 <template>
   <div id="app">
-    <ShoppingCart/>
     <ProductList/>
+    <ShoppingCart/>
   </div>
 </template>
 
 <script>
 import ProductList from './components/ProductList';
 import ShoppingCart from './components/ShoppingCart';
+
 export default {
   name: 'app',
   components: {
@@ -25,5 +26,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 </style>
