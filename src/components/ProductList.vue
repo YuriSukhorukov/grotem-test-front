@@ -1,36 +1,44 @@
 <template>
-	<div>
-    <button @click='addSelectedToCart'>Add selected in Cart</button>  
-    <div class="dropdown">
-      <button class="dropbtn text-first-upper">{{selectedGroup}}</button>
-      <div class="dropdown-content text-first-upper">
-        <a class="text-first-upper" href="#" @click="selectGroup('Категория')">...</a>
-        <a class="text-first-upper" href="#" @click="selectGroup(group.name)" v-for="group in groups">{{group.name}}</a>
-      </div>
-		</div>
+	<div id='product-list'>
     <table>
-	    <thead>
-	      <tr>
+	    <thead class="data-tablee-text">
+	      <tr class="tr-header">
 	      	<th></th>
-	        <th>Категория</th>
-	        <th @click="sort('name')">Товар</th>
-	        <th @click="sort('price')">Цена</th>
+	        <th class="data-tablee-text">
+           <div class="dropdown">
+              <button class="dropbtn text-first-upper">{{selectedGroup}}</button>
+              <div class="dropdown-content text-first-upper">
+                <a class="text-first-upper" href="#" @click="selectGroup('Категория')">...</a>
+                <a class="text-first-upper" href="#" @click="selectGroup(group.name)" v-for="group in groups">{{group.name}}</a>
+              </div>
+            </div> 
+          </th>
+	        <th class="data-tablee-text" @click="sort('name')">Товар</th>
+	        <th class="data-tablee-text" @click="sort('price')">Цена</th>
 	      </tr>
 	    </thead>
 	    <tbody>
-	      <tr v-for="product in sortedProducts">
-	      	<input type="checkbox" value="product" v-model="product.selected">
-	        <td class="text-first-upper">{{product.group}}</td>
-	        <td>{{product.name}}</td>
-	        <td>{{product.price}}</td>
+	      <tr v-for="product in sortedProducts" class="data-tablee-cell">
+	      	<td class='td-checkbox-product'><input type="checkbox" value="product" v-model="product.selected"></td>
+	        <td class="text-first-upper data-tablee-text">{{product.group}}</td>
+	        <td class="data-tablee-text">{{product.name}}</td>
+	        <td class="data-tablee-text">{{product.price}}</td>
 	      </tr>
 	    </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" class="btn-add-to-cart">
+            <button @click='addSelectedToCart'>Add selected in Cart</button>
+          </td>
+        </tr>
+      </tfoot>
 	  </table>
 	</div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+
 export default {
 	name: 'ProductList',
 	
@@ -111,20 +119,78 @@ export default {
 </script>
 
 <style scoped>
-	td, th {
-	  padding: 5px;
-	}
+/*   #product-list {
+    border: 1px solid #eaedef;
+    border-radius: 5px;
+    border-spacing: 0;
+    width: 50%;
+  } */
+
+  .data-tablee-text {
+    font-size: 13px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 400;
+    color: #5e6684;
+  }
+
+  .data-tablee-text { line-height: 1; }
+
+  .group-selecter {
+    width: 100%;
+    /* background-color: yellow; */
+  }
+/*   td {
+    border: 1px solid #eaedef;
+  } */
 
 	th {
 	  cursor:pointer;
 	}
 
+  td, th {
+    padding: 5px;
+    text-align: left;
+    height: 30px;
+    vertical-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #eaedef;
+  }
+
+  thead, tfoot {
+    /* border: 1px solid #eaedef; */
+  }
+
+  table {
+    /* border-collapse: collapse; */
+    border: 1px solid #eaedef;
+    border-radius: 5px;
+    border-spacing: 0;
+    width: 50%;
+  }
+
+  .td-checkbox-product {
+    vertical-align: center;
+    padding: 10px;
+    text-align: left;
+    width: 10px;
+  }
+
+  .btn-add-to-cart {
+    text-align: right;
+    /* background-color: red; */
+  }
+
+  .data-tablee-text {
+    /* background-color: yellow; */
+    /* border-bottom: 1px solid #eaedef; */
+  }
+
 	.dropbtn {
-	    background-color: #4CAF50;
+/* 	    background-color: #4CAF50;
 	    color: white;
 	    padding: 16px;
 	    font-size: 16px;
-	    border: none;
+	    border: none; */
 	}
 
 	.dropdown {
@@ -153,6 +219,8 @@ export default {
 	.dropdown:hover .dropdown-content {display: block;}
 
 	.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+  /* .dropdown:active .dropdown-content {display: none;} */
 
   .text-first-upper {
     text-transform: lowercase;
