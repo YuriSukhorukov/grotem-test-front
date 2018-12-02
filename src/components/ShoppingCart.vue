@@ -12,7 +12,7 @@
 	        <td>{{product.name}}</td>
 	        <td class="t-align-center">{{product.price}}</td>
 	        <td class="btn-remove-product-wrapper">
-	        	<button @click='removeProduct'>
+	        	<button @click='removeProduct(product)'>
 	        		<span>&#x2716;</span>
 	        	</button>
 	        </td>
