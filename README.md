@@ -1,6 +1,6 @@
 # grotem-test-front
 
-* [Vue.js](https://vuex.vuejs.org)
+* [Vue.js](https://vuejs.org)
 * [Vuex](https://vuex.vuejs.org)
 
 ## Project setup
