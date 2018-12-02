@@ -1,5 +1,5 @@
 <template>
-  <table class="tablee-text">
+  <table>
     <thead>
       <tr>
         <th></th>
@@ -18,13 +18,13 @@
             </div>
           </div> 
         </th>
-      <th class="header-text" @click="sort('name')">
+      <th @click="sort('name')">
         <span v-if="currentSort===`name`">
           {{currentSortDirSymbol}}
         </span>
         &emsp;Товар
       </th>
-      <th class="header-text" @click="sort('price')">
+      <th @click="sort('price')">
         <span v-if="currentSort===`price`">
           {{currentSortDirSymbol}}
         </span>
@@ -34,12 +34,18 @@
   </thead>
   <tbody>
     <tr v-for="product in sortedProducts" class="data-tablee-cell">
-      <td class='td-checkbox-product'><input type="checkbox" value="product" v-model="product.selected"></td>
-        <td class="text-first-upper">{{product.group}}</td>
-        <td>
-          {{product.name}}
-        </td>
-      <td>{{product.price}}</td>
+      <td class='td-checkbox-product'>
+        <input type="checkbox" value="product" v-model="product.selected">
+      </td>
+      <td class="text-first-upper">
+        {{product.group}}
+      </td>
+      <td>
+        {{product.name}}
+      </td>
+      <td>
+        {{product.price}}
+      </td>
     </tr>
   </tbody>
     <tfoot>
@@ -159,21 +165,23 @@ export default {
 </script>
 
 <style scoped>
-  .tablee-text {
+  table {
+    vertical-align: center;
+    border-spacing: 0;
+    width: 50%;
     font-size: 13px;
     font-family: 'Nunito Sans', sans-serif;
-    font-weight: 400;
     color: #5e6684;
     line-height: 1;
+    font-weight: 400;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   }
 
-  .header-text {
-    color: #47A2D3; 
+  thead, 
+  tfoot {
+    background-color: #fafafa;
+    color: #47A2D3;
     font-weight: bold;
-  }
-
-  th {
-    cursor:pointer;
   }
 
   td, 
@@ -185,25 +193,11 @@ export default {
     border-bottom: 1px solid #f0f0f0;
   }
 
-  tbody tr:hover {
-    background-color: #ffffdd;
-  }
+  th {cursor:pointer;}
 
-  td {
-    border-right: 1px solid #f0f0f0;
-  }
+  td {border-right: 1px solid #f0f0f0;}
 
-  thead, 
-  tfoot {
-    background-color: #fafafa;
-  }
-
-  table {
-    vertical-align: center;
-    border-spacing: 0;
-    width: 50%;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  }
+  tbody tr:hover {background-color: #ffffdd;}
 
   .td-checkbox-product {
     vertical-align: center;
@@ -212,48 +206,28 @@ export default {
     width: 10px;
   }
 
-  .btn-add-to-cart-wrapper {
-    text-align: right;
-  }
+  .btn-add-to-cart-wrapper {text-align: right;}
 
+  .dropbtn, 
   .btn-add-to-cart {
-    text-align: left;
-      font-size: 13px;
-      color: #47A2D3; 
-      font-weight: bold;
-
-      border-radius: 5px;
-      background-color: white;
-      border: 1px solid #dfdfdf;
+    font-size: 13px;
+    color: #47A2D3; 
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #dfdfdf;
   }
 
+  .btn-add-to-cart:active {transform: scale(0.95, 0.95);}
 
-  .dropbtn {
-      font-size: 13px;
-      color: #47A2D3; 
-      font-weight: bold;
-
-      border-radius: 5px;
-      background-color: white;
-      border: 1px solid #dfdfdf;
-  }
+  .btn-add-to-cart:hover {background-color: #f0f0f0;}
 
   .dropdown {
-      position: relative;
-      display: inline-block;
+    position: relative;
+    display: inline-block;
   }
 
-  .dropbtn:active {
-    transform: scale(0.95, 0.95);
-  }
-
-  .btn-add-to-cart:active {
-    transform: scale(0.95, 0.95);
-  }
-
-  .btn-add-to-cart:hover {
-    background-color: #f0f0f0;
-  }
+  .dropbtn:active {transform: scale(0.95, 0.95);}
 
   .dropdown-content {
       display: none;
